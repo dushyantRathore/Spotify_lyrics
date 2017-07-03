@@ -1,42 +1,48 @@
 import dbus
 import re
 
+
 def get_song_details():
-    # Setup a new bus session
-    session_bus = dbus.SessionBus()
 
-    spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
-                                         "/org/mpris/MediaPlayer2")
-    spotify_properties = dbus.Interface(spotify_bus,
-                                        "org.freedesktop.DBus.Properties")
-    metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
+    try:
+        # Setup a new bus session
+        session_bus = dbus.SessionBus()
 
-    # The property Metadata behaves like a python dict
-    # for key, value in metadata.items():
-    #     print key, value
+        spotify_bus = session_bus.get_object("org.mpris.MediaPlayer2.spotify",
+                                             "/org/mpris/MediaPlayer2")
+        spotify_properties = dbus.Interface(spotify_bus,
+                                            "org.freedesktop.DBus.Properties")
+        metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 
-    # To just print the title
+        # The property Metadata behaves like a python dict
+        # for key, value in metadata.items():
+        #     print key, value
 
-    song_artist = metadata['xesam:artist']
-    song_artist = str(song_artist[0]).lower()
-    song_artist = song_artist.replace(" ", "")
+        # To just print the title
 
-    song_title = str(metadata['xesam:title']).lower()
-    song_title = song_title.replace(" ", "")
+        song_artist = metadata['xesam:artist']
+        song_artist = str(song_artist[0]).lower()
+        song_artist = song_artist.replace(" ", "")
 
-    for ch in ['!', '$', '-', '&']:
-        song_artist = song_artist.replace(ch, "")
-        song_title = song_title.replace(ch, "")
+        song_title = str(metadata['xesam:title']).lower()
+        song_title = song_title.replace(" ", "")
 
-    print song_artist
-    print song_title
+        for ch in ['!', '$', '-', '&']:
+            song_artist = song_artist.replace(ch, "")
+            song_title = song_title.replace(ch, "")
 
-    song_art = metadata['mpris:artUrl']
-    song_art = str(song_art)
+        print song_artist
+        print song_title
 
-    song ={}
-    song["song_artist"] = song_artist
-    song["song_title"] = song_title
-    song["song_art"] = song_art
+        song_art = metadata['mpris:artUrl']
+        song_art = str(song_art)
 
-    return song
+        song ={}
+        song["song_artist"] = song_artist
+        song["song_title"] = song_title
+        song["song_art"] = song_art
+
+        return song
+
+    except Exception as e:
+        return 0
