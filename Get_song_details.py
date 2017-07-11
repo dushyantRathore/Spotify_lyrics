@@ -27,7 +27,7 @@ def get_song_details():
         song_title = str(metadata['xesam:title']).lower()
         song_title = song_title.replace(" ", "")
 
-        for ch in ['!', '$', '-', '&']:
+        for ch in ['!', '$', '-', '&', '/', "'"]:
             song_artist = song_artist.replace(ch, "")
             song_title = song_title.replace(ch, "")
 
