@@ -27,15 +27,18 @@ def get_song_details():
         song_title = str(metadata['xesam:title']).lower()
         song_title = song_title.replace(" ", "")
 
-        for ch in ['!', '$', '-', '&', '/', "'"]:
-            song_artist = song_artist.replace(ch, "")
-            song_title = song_title.replace(ch, "")
-
-        print song_artist
-        print song_title
-
         song_art = metadata['mpris:artUrl']
         song_art = str(song_art)
+        
+        song_title = re.sub("[\(\[].*?[\)\]]", "", song_title)
+        song_title = re.sub('[^A-Za-z0-9]+', '', song_title)
+
+        song_artist = re.sub("[\(\[].*?[\)\]]", "", song_artist)
+        song_artist = re.sub('[^A-Za-z0-9]+', '', song_artist)
+
+        print song_title
+        print song_artist
+        print song_art
 
         song ={}
         song["song_artist"] = song_artist
