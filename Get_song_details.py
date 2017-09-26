@@ -29,7 +29,7 @@ def get_song_details():
 
         song_art = metadata['mpris:artUrl']
         song_art = str(song_art)
-        
+
         song_title = re.sub("[\(\[].*?[\)\]]", "", song_title)
         song_title = re.sub('[^A-Za-z0-9]+', '', song_title)
 
