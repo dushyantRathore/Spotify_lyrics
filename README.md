@@ -32,7 +32,7 @@ python Main.py
 
 ## Working
 
-![](https://imgur.com/a/qOzGF)
+![](https://media.giphy.com/media/3ov9jNiJPr5i4Pdp1m/giphy.gif)
 
 
 
