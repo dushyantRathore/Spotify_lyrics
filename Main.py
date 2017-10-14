@@ -2,7 +2,6 @@ from Get_song_details import get_song_details
 from Get_lyrics import get_lyrics
 from Tkinter import *
 from PIL import ImageTk, Image
-import urllib2
 import urllib
 import Image
 import ImageTk
@@ -58,7 +57,7 @@ class GUI():
             self.label2.grid(row=0, column=1)
             self.label3.grid(row=1, sticky=E)
             self.label4.grid(row=1, column=1)
-            self.imglabel.grid(row=2, column =  0, columnspan =2)
+            self.imglabel.grid(row=2, column = 0, columnspan =2)
             self.T.grid(row=4, column=0, columnspan = 3)
 
             self.mainframe.pack()
